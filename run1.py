@@ -1,13 +1,16 @@
 import numpy as np
 import cv2 as cv
 import matplotlib.pyplot as plt
-img1 = cv.imread('box.png',cv.IMREAD_GRAYSCALE)          # queryImage
-img2 = cv.imread('box_in_scene.png',cv.IMREAD_GRAYSCALE) # trainImage
+img1 = cv.imread('2.png',cv.IMREAD_GRAYSCALE)          # queryImage
+img2 = cv.imread('1.png',cv.IMREAD_GRAYSCALE) # trainImage
 # Initiate SIFT detector
 sift = cv.xfeatures2d.SIFT_create()
 # find the keypoints and descriptors with SIFT
 kp1, des1 = sift.detectAndCompute(img1,None)
 kp2, des2 = sift.detectAndCompute(img2,None)
+
+'print(des1+"\n")'
+
 # BFMatcher with default params
 bf = cv.BFMatcher()
 matches = bf.knnMatch(des1,des2,k=2)
